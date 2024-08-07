@@ -23,7 +23,7 @@ from flask import url_for  # noqa: F401 pylint: disable=unused-import
 from service.models import Product
 from service.common import status  # HTTP Status Codes
 from . import app
-from service.models import Product, Category
+from service.models import Category
 
 
 ######################################################################
@@ -132,7 +132,9 @@ def get_products(product_id):
 
 ######################################################################
 # UPDATE AN EXISTING PRODUCT
-######################################################################
+#####################################################################
+
+
 @app.route("/products/<int:product_id>", methods=["PUT"])
 def update_products(product_id):
     """
@@ -155,6 +157,8 @@ def update_products(product_id):
 ######################################################################
 # DELETE A PRODUCT
 ######################################################################
+
+
 @app.route("/products/<int:product_id>", methods=["DELETE"])
 def delete_products(product_id):
     """
@@ -173,6 +177,8 @@ def delete_products(product_id):
 ######################################################################
 # LIST PRODUCTS
 ######################################################################
+
+
 @app.route("/products", methods=["GET"])
 def list_products():
     """Returns a list of Products"""
@@ -203,5 +209,3 @@ def list_products():
     results = [product.serialize() for product in products]
     app.logger.info("[%s] Products returned", len(results))
     return results, status.HTTP_200_OK
-
-
